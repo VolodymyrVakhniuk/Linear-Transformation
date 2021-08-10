@@ -3,19 +3,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
     <script src="https://unpkg.com/mathjs@9.4.4/lib/browser/math.js"></script>
 
-    <!-- Skeleton Framework Setup -->
+    <!-- Bootstrap Framework Setup -->
     <!-- Mobile Specific Metas 
       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- FONT
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;600&display=swap" rel="stylesheet">
 
-    <!-- CSS
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/skeleton.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
+
+
 
     <!-- <script src="Math/Util.js"></script>
     <script src="Math/LinearTransformation.js"></script>
@@ -25,8 +28,86 @@
     <script src="Renderer/OriginRenderer.js"></script>
     <script src="Renderer/Vector2DRenderer.js"></script>
     <script src="Renderer/GridRenderer.js"></script> -->
-    <script type="module" src="Renderer/RendererMaster.js"></script>
   </head>
   <body>
+
+      <div class="row mx-0 pt-4">
+        <!-- Canvas -->
+        <div class="col-8" id="p5Container"></div>
+        <!-- Main Section -->
+        <div class="col-4 main-steps d-flex flex-column justify-content-center">
+          <h1 class="mt-4">Steps</h1>
+          <hr>
+          <ol class="main-steps_list">
+            <li class="mt-2">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem id magni voluptate sit veritatis impedit?
+            </li>
+
+            <!-- first vector -->
+            <div class="vector-input d-flex flex-column">
+              <input type="number" class="matrix-cell">
+              <input type="number" class="matrix-cell mt-1">
+            </div>
+            
+
+            <li class="mt-2">
+              Lorem ipsum dolor, sit amet consectetur adipisicing.
+            </li>
+            <li class="mt-2">
+              Lorem, ipsum dolor.
+            </li>
+          </ol>
+
+          <h1 class="mt-4">Configurations</h1>
+          <hr>
+
+          <!-- Checkboxes -->
+          <div class="main-checkbox_list">
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" value="" id="CheckBox1">
+              <label class="form-check-label" for="CheckBox1">
+                Lorem, ipsum dolor.
+              </label>
+            </div>
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" value="" id="CheckBox2">
+              <label class="form-check-label" for="CheckBox2">
+                Lorem ipsum dolor sit amet.
+              </label>
+            </div>
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" value="" id="CheckBox3">
+              <label class="form-check-label" for="CheckBox3">
+                Lorem ipsum dolor sit amet.
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-8">
+          <!-- Range row -->
+          <div class="row">
+            <div class="col-8">
+              <label for="Range" class="form-label d-block">Animation</label>
+              <input type="range" class="form-range" id="Range" value="20">
+            </div>
+            <div class="col-4 pt-4">
+              <button class="ActionBtn" >Play</button>
+              <button class="ActionBtn" >Stop</button>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-4">
+
+        </div>
+         
+
+
+
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script type="module" src="Renderer/RendererMaster.js"></script>
+    <script type="module" src="UI/UIController.js"></script>
   </body>
 </html>

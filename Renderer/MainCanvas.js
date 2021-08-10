@@ -1,6 +1,8 @@
 var MainSketch = function(mc) {
-    mc.cwidth = 1000;
-    mc.cheight = 800;
+    // TODO Mobie view on small pixels
+    // create boundary
+    mc.cwidth = window.innerWidth * 65.2 / 100;
+    mc.cheight = window.innerHeight - (100);
 
     mc.origin = {
         x : mc.cwidth / 2,
@@ -8,7 +10,7 @@ var MainSketch = function(mc) {
     };
 }
 
-var MainCanvas = new p5(MainSketch);
+var MainCanvas = new p5(MainSketch, "p5Container");
 
 export {
     MainCanvas

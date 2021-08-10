@@ -1,0 +1,41 @@
+* {
+    font-family: 'Comfortaa', cursive;
+}
+
+html body .main-steps {
+    padding-right: 50px;
+}
+
+.main-steps_list {
+    font-size: 1.3em;
+    padding-right: 30px;
+}
+
+.w-600 {
+    font-weight: 600;
+}
+
+h1 {
+    font-weight: 600;
+}
+
+
+
+
+/* Matrix */
+.matrix-cell {
+    width: 25px;
+}
+
+/* Number input arrow hide */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
