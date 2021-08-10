@@ -1,3 +1,5 @@
+import { colorPalette } from "./Color.js";
+
 const originRenderData = {
     x : 0,
     y : 0,
@@ -25,4 +27,8 @@ OriginRenderer.prototype.renderOrigin = function(p) {
     p.fill(colorPalette.originColor.r, colorPalette.originColor.g, colorPalette.originColor.b);
     p.ellipse(originRenderData.x, originRenderData.y, originRenderData.rad, originRenderData.rad);
     p.pop();
+}
+
+export {
+    OriginRenderer
 }

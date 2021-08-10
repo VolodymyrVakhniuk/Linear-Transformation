@@ -1,3 +1,7 @@
+import {
+    Timer
+} from "./Math/Util.js"
+
 // Animation of Linear Transformation;
 function LTAnimation(linearTransformation, duration) {
     this._T = duration;
@@ -61,4 +65,8 @@ LTAnimation.prototype.play = function(p5Canvas) {
     c.vectorRenderer.update();
 
     c.gridRenderer.attachBasis(transformedBasis[0], transformedBasis[1]);
+}
+
+export {
+    LTAnimation
 }

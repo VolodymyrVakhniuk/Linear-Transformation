@@ -1,3 +1,5 @@
+import { colorPalette } from "./Color.js";
+
 const vectorRenderData = {
     triangleSideLen : 20,
     rectheight : 6.5,
@@ -90,8 +92,8 @@ Vector2DRenderer.prototype.renderVectors = function(c) {
 // color is fixed for regular vectors and eigen vector but varies for basis vectors;
 Vector2DRenderer.prototype._renderVector = function(c, vector, color = null) {
 
-    xtail = vector[0];
-    ytail = vector[1];
+    const xtail = vector[0];
+    const ytail = vector[1];
 
     c.push();
 
@@ -123,6 +125,11 @@ Vector2DRenderer.prototype._renderVector = function(c, vector, color = null) {
     c.triangle(vl, 0, vl - th, tsl / 2, vl - th, -tsl / 2);
 
     c.pop();
+}
+
+
+export {
+    Vector2DRenderer
 }
 
 

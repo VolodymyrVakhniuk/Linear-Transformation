@@ -4,6 +4,16 @@
 // var basis1 = [130, 50];
 // var basis2 = [-50, 100];
 
+
+import { LinearTransformation } from '../Math/LinearTransformation.js';
+import { GridRender } from '../Renderer/GridRenderer.js';
+import { MainCanvas } from '../Renderer/MainCanvas.js';
+import { OriginRenderer } from '../Renderer/OriginRenderer.js';
+import { Vector2DRenderer } from '../Renderer/Vector2DRenderer.js';
+import { LTAnimation } from '../Animation.js';
+import { colorPalette } from '../Renderer/Color.js';
+
+
 var vector = [3, 4];
 
 var basis1 = [0, 100];

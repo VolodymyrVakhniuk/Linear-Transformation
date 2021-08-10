@@ -9,3 +9,7 @@ var MainSketch = function(mc) {
 }
 
 var MainCanvas = new p5(MainSketch);
+
+export {
+    MainCanvas
+}

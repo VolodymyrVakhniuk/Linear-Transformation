@@ -1,3 +1,6 @@
+import { colorPalette } from "./Color.js";
+
+
 const gridRenderData = {
     axisThickness : 5,
     lineThinkness : 3,
@@ -49,7 +52,7 @@ GridRender.prototype.renderGrid = function(c) {
 
     // Calculation the orientation of basis vectors;
     let v1crossv2 = this.basisv1[0] * this.basisv2[1] - this.basisv1[1] * this.basisv2[0];
-    orientation_ = v1crossv2 / math.abs(v1crossv2);
+    const orientation_ = v1crossv2 / math.abs(v1crossv2);
 
     // 1) render affine lines;
     c.push();
@@ -117,3 +120,8 @@ GridRender.prototype.renderGrid = function(c) {
     c.pop();
 }
 
+
+
+export {
+    GridRender
+}

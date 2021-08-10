@@ -32,3 +32,7 @@ LinearTransformation.prototype.getInterpolatedResult = function(p) {
     return [interpBasisVec1, interpBasisVec2];
 }
 
+export {
+    LinearTransformation
+}
+

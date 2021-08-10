@@ -18,3 +18,8 @@ const colorPalette = {
     basisV1Color    :   new Color(138, 211, 191),
     basisV2Color    :   new Color(223, 125, 110) 
 };
+
+export {
+    Color, 
+    colorPalette
+};

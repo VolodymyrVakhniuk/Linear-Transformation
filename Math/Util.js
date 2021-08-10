@@ -26,4 +26,8 @@ Timer.prototype.getElapsedTime = function() {
     return this.currentTime;
 }
 
+export {
+    Timer
+}
+
 
