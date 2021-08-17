@@ -1,0 +1,13 @@
+API:
+
+VectorRenderer.attachVector(vector); // attach via reference: when vector changes the image of it on the screen also changes;
+GridRenderer.attachBasis(basisVector1, basisVector2); // attach via reference;
+
+VectorRenderer.dettachVector(vector); 
+
+// Main draw funtion
+draw()
+{   
+    VectorRenderer.renderVectors(p5Context);
+    GridRenderer.renderGrid(p5Context);
+}

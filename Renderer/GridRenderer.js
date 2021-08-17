@@ -121,7 +121,6 @@ GridRender.prototype.renderGrid = function(c) {
 }
 
 
-
 export {
     GridRender
 }

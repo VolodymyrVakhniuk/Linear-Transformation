@@ -43,56 +43,61 @@
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem id magni voluptate sit veritatis impedit?
             </li>
 
-            
-            <div class="vector-input d-flex flex-row mt-2">
-              <!-- first vector -->
-              <div class="d-flex flex-column" style="margin-right:20px">
-                <mo style="
-                padding: 0px 0em;
-                transform: scale(1.53141, 4.5) translateY(5px) translateX(-7px);
-                transform-origin: 0;
-                pointer-events: none;
-                position: absolute;">
-                  <span style="margin-right: 15px;">(</span> <span>)</span>
-                </mo>
-                <input type="number" max="15" min="-15" class="matrix-cell d-inline-block">
-                <input type="number" max="15" min="-15" class="matrix-cell mt-1 d-inline-block">
-              </div>
+          <div>
+            <span class="text-with-matrix">
+              Your first basis vector:&nbsp;  
+            </span>
+            <table class="matrix">
+                <tr>
+                    <td> <input type="text" name="field10" class="vector-input" data-identifier="vec1val1" size="2"> </td> 
+                </tr>
+                <tr>
+                    <td> <input type="text" name="field01" class="vector-input" data-identifier="vec1val2" size="2"> </td>
+                </tr>
+            </table>
+            <span class="text-with-matrix">
+              ,
+            </span>
+            <br>
 
-              <!-- second vector -->
-              <div class="d-flex flex-column">
-                <mo style="
-                padding: 0px 0em;
-                transform: scale(1.53141, 4.5) translateY(5px) translateX(-7px);
-                transform-origin: 0;
-                pointer-events: none;
-                position: absolute;">
-                  <span style="margin-right: 15px;">(</span> <span>)</span>
-                </mo>
-                <input type="number" max="15" min="-15" class="matrix-cell d-inline-block">
-                <input type="number" max="15" min="-15" class="matrix-cell mt-1 d-inline-block">
-              </div>
-            </div>
-            
+            <span class="text-with-matrix">
+              Your second basis vector:&nbsp;
+            </span>
+            <table class="matrix">
+              <tr>
+                  <td> <input type="text" name="field10" class="vector-input" data-identifier="vec2val1" size="2"> </td> 
+              </tr>
+              <tr>
+                  <td> <input type="text" name="field01" class="vector-input" data-identifier="vec2val2" size="2"> </td>
+              </tr>
+            </table>
+            <span class="text-with-matrix">
+              .
+            </span>
+          </div>
 
             <li class="mt-5">
               Lorem ipsum dolor, sit amet consectetur adipisicing.
             </li>
-            <!-- step 2 matrix -->
-            <div class="d-flex flex-row">
-              
-              <div class="d-flex flex-column" style="margin-right:5px;">
-                <input type="number" max="15" min="-15" class="matrix-cell d-inline-block">
-                <input type="number" max="15" min="-15" class="matrix-cell mt-1 d-inline-block">
-              </div>
-              <mo style="position:absolute;padding: 0px 0em; transform: scale(1.53141, 4.5) translateY(5px) translateX(-8px);transform-origin: 0;pointer-events: none;"><span style="margin-right: 35px;">(</span> <span>)</span></mo>
-              <div class="d-flex flex-column">
-                <input type="number" max="15" min="-15" class="matrix-cell d-inline-block">
-                <input type="number" max="15" min="-15" class="matrix-cell mt-1 d-inline-block">
-              </div>
+                      
+            <div>
+              <span class="text-with-matrix">
+                Your transformation matrix:&nbsp;  
+              </span>
+              <table class="matrix">
+                  <tr>
+                      <td> <input type="text" name="field10" class="matrix-input" data-identifier="row1col1" size="2"> </td> 
+                      <td> <input type="text" name="field10" class="matrix-input" data-identifier="row1col2" size="2"> </td> 
+                  </tr>
+                  <tr>
+                      <td> <input type="text" name="field01" class="matrix-input" data-identifier="row2col1" size="2"> </td>
+                      <td> <input type="text" name="field10" class="matrix-input" data-identifier="row2col2" size="2"> </td> 
+                  </tr>
+              </table>
+              <span class="text-with-matrix">
+                .
+              </span> 
             </div>
-
-
 
             <li class="mt-5">
               Lorem, ipsum dolor.
@@ -133,8 +138,8 @@
               <input type="range" class="form-range" id="Range" value="20">
             </div>
             <div class="col-md-4 pt-4">
-              <button class="ActionBtn" >Play</button>
-              <button class="ActionBtn" >Stop</button>
+              <button class="ActionBtn" id="PlayBtn" >Play</button>
+              <button class="ActionBtn" id="StopBtn">Stop</button>
             </div>
           </div>
           

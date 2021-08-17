@@ -41,7 +41,41 @@ input[type=number] {
 }
 
 
+.matrix {
+    position: relative;
+    display: inline-block;
+    top: 18px;
+}
+.matrix:before, .matrix:after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    border: 2px solid #000;
+    width: 6px;
+    height: 105%;
+}
+.matrix:before {
+    left: -8px;
+    border-right: 0;
+}
+.matrix:after {
+    right: -8px;
+    border-left: 0;
+}
 
+.matrix input {
+    text-align: center;
+}
+
+.matrix input:focus {
+    outline: none;
+}
+
+span.text-with-matrix {
+    line-height: 42px;
+    padding: 5px;
+
+}
 
 
 /* MAtRiX */

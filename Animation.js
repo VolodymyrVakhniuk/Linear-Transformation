@@ -39,7 +39,7 @@ LTAnimation.prototype.play = function(p5Canvas) {
 
     // Update proportion;
     this._p += this._V * dt;
-    console.log(this._p);
+    // console.log(this._p);
     
     this._t += dt;
 

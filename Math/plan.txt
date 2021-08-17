@@ -1,0 +1,72 @@
+
+
+LinearTransformation.setBasis(vec1, vec2);
+
+LinearTransformation.attachVector(vec); // must update vec whenever basis updates;
+
+LinearTransformation.setMatrix(mat);
+
+
+LinearTransformation.getResult();
+
+dt is between 0 and 1;
+LinearTransformation.getInterpolatedResult(dt);
+
+
+
+NOTE: BASIS is specified in terms of cartesian units, while regular vectors are specified in terms of BASIS.
+
+
+LinearTransformation.playAnnimation(p5Context);
+
+
+
+// dt = 0 if it is the first iteration;
+// dt - time in milliseconds elapsed since previous iteration;
+// LinearTransformation.prototype.getInterpolatedResult = function(dt) {
+
+//     // Total annimation duration in milliseconds;
+//     let T = 4000;
+
+//     // Compute trajectories;
+//     let trajectory1 = math.subtract(this.getTransformedBasis()[0], this._basisVec1);
+//     let trajectory1len = math.sqrt( trajectory1[0] * trajectory1[0] + trajectory1[1] * trajectory1[1] );
+
+//     let trajectory2 = math.subtract(this.getTransformedBasis()[1], this._basisVec2);
+//     let trajectory2len = math.sqrt( trajectory2[0] * trajectory2[0] + trajectory2[1] * trajectory2[1] );
+
+//     // Calculate interpolated basis based on speeds from prev iteration;
+//     this.interpBasisVec1 = math.add( math.multiply(trajectory1, this.V1 * dt / trajectory1len), this.interpBasisVec1);
+//     this.interpBasisVec2 = math.add( math.multiply(trajectory2, this.V2 * dt / trajectory2len), this.interpBasisVec2);
+
+//     // Update speeds;
+//     // Constant acceleration;
+//     if(this.t < T / 2) {
+//         this.V1 = 4 * trajectory1len * this.t / (T * T);
+//         this.V2 = 4 * trajectory2len * this.t / (T * T);
+
+//         this.maxV1 = this.V1;
+//         this.maxV2 = this.V2;
+//     }
+//     else {
+//         this.V1 = this.maxV1 - 4 * trajectory1len * (this.t - T / 2) / (T * T);
+//         this.V2 = this.maxV2 - 4 * trajectory2len * (this.t - T / 2) / (T * T);
+//     }
+
+//     // Speed proportional to sin;
+//     // this.V1 = trajectory1len * math.PI / (2 * T) * math.sin(math.PI / T * this.t);
+//     // this.V2 = trajectory2len * math.PI / (2 * T) * math.sin(math.PI / T * this.t);
+
+//     // Speed is Linear;
+//     // this.V1 = trajectory1len / T;
+//     // this.V2 = trajectory2len / T;
+
+//     this.t += dt;
+
+//     if(this.t > T) {
+//         let res = this.getTransformedBasis();
+//         return [res[0], res[1]];
+//     }
+
+//     return [this.interpBasisVec1, this.interpBasisVec2];
+// }
