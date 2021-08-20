@@ -4,7 +4,7 @@ import {
 } from "../export.js";
 
 const gridRenderData = {
-    axisThickness : 5,
+    axisThickness : 3,
     lineThinkness : 3,
     linesNum : 20 // number of affine lines in one direction;
 };

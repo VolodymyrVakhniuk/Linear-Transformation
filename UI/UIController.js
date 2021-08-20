@@ -107,23 +107,14 @@ document.getElementsByClassName("vector-input").forEach(domElement => {
 });
 
 document.getElementById("Range").addEventListener("input", (e) => {
-    playAnimation(e.target.value / 100);
+    // playAnimation(e.target.value / 100);
+    AnimationData.Val = e.target.value / 100;
+    AnimationData.IsPlaying = false;
 });
 
-import {
-    LTAnimation,
-    LinearTransformation,
-    MainCanvas
-} from "../export.js";
-
 document.getElementById("PlayBtn").addEventListener("click", (e) => {
-    // let linearTransformation = new LinearTransformation(
-    //     LinearTransformationData.BasisVec1,
-    //     LinearTransformationData.BasisVec2,
-    //     LinearTransformationData.Matrix
-    // );
-    // let animation = new LTAnimation(linearTransformation);
-    // animation.play(MainCanvas);
+    // trigger start func
+
     AnimationData.IsPlaying = true;
 })
 document.getElementById("StopBtn").addEventListener("click", (e) => {

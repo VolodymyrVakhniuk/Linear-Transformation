@@ -1,5 +1,5 @@
 const Constants = {
-    UNIT_LENGTH : 80
+    UNIT_LENGTH : 60
 };
 
 export {

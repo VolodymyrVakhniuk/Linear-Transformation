@@ -44,30 +44,22 @@ MainCanvas.setup = function() {
 MainCanvas.draw = function() {
     let mc = MainCanvas; // alias
 
-    // console.log(LinearTransformationData.Matrix[0][0]);
-    // console.log(LinearTransformationData.Matrix[0][1]);
-    // console.log(LinearTransformationData.Matrix[1][0]);
-    // console.log(LinearTransformationData.Matrix[0][0]);
-    
-    // let transformedBasis = linearTransformation.getInterpolatedResult(0.9);
-    // let transformedBasis = linearTransformation.getTransformedBasis();
-    // ltAnimation.play(mc);
-
     // Measuring time elapsed since previous iteration;
     let dt = mc.timer.getElapsedTime();
     mc.timer.restart();
 
     if(AnimationData.IsPlaying === true) {
-        // ltAnimation.play(mc);
-        console.log("Animating");
         let [updatedBasisVec1, updatedBasisVec2] = ltAnimation.getUpdatedBasis(dt);
-        console.log(updatedBasisVec1);
-        console.log(updatedBasisVec2);
-        console.log("dasda");
+
         mc.vectorRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
         mc.gridRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
-        // mc.vectorRenderer.attachBasis(updatedBasisVec1, updatedBasisVec2);
-        // mc.gridRenderer.attachBasis(updatedBasisVec1, updatedBasisVec2);
+    }
+    else
+    {
+        let [updatedBasisVec1, updatedBasisVec2] = ltAnimation.getUpdatedBasis(0);
+
+        mc.vectorRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
+        mc.gridRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
     }
 
     // Everything is rendered from the origin coords
