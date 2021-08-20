@@ -60,11 +60,9 @@ LTAnimation.prototype.getUpdatedBasis = function(dt) {
 
         // AnimationData.IsPlaying = false;
         document.getElementById("Range").value = 100;
-        console.log("Setting range attribute to: " + 100);
     }
     else {
         document.getElementById("Range").value = this._t / this._T * 100;
-        console.log("Setting range attribute to: " + this._t / this._T * 100);
     }
 
     // console.log(this._p);

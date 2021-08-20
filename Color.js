@@ -16,7 +16,9 @@ const ColorPalette = {
 
     vectorColor     :   new Color(223, 0, 0),
     basisV1Color    :   new Color(138, 211, 191),
-    basisV2Color    :   new Color(223, 125, 110) 
+    basisV2Color    :   new Color(223, 125, 110),
+
+    eigenVectorColor    :   new Color(0, 0, 0)
 };
 
 export {

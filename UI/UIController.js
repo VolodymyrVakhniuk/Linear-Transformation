@@ -1,17 +1,22 @@
-function playAnimation(val) {
-    console.log("Animation is play9ng :" + val);
-}
 
 // Global object to store all necessary data about LT;
 const LinearTransformationData = {
     BasisVec1:  new Array(2).fill(0),
     BasisVec2:  new Array(2).fill(0),
-    Matrix:     new Array(2).fill().map(() => Array(2).fill(0))
+    Matrix:     new Array(2).fill().map(() => Array(2).fill(0)),
 };
+
+// Default values for a matrix; aka identity;
+LinearTransformationData.Matrix[0][0] = 1;
+LinearTransformationData.Matrix[1][1] = 1;
 
 const AnimationData = {
     IsPlaying : false,
     Val : 0.0 // [0 -> 1];
+};
+
+const ConfigurationsData = {
+    displayEigenVectors : true
 };
 
 
@@ -21,8 +26,6 @@ const vectorValHandlers = {
         // assign to obj
         console.log(`Value from first vector first val is : ${val}`);
         LinearTransformationData.BasisVec1[0] = parseInt(val);
-
-    
     },
 
     vec1val2: (val) => {
@@ -52,10 +55,8 @@ const matrixValHandlers = {
         console.log(`Matrix value from row 1 col 1  : ${val}`);
 
         let valu = parseInt(val);
-        if(valu === NaN) valu = 0;
+        if(valu === NaN) valu = 1;
         LinearTransformationData.Matrix[0][0] = valu;
-
-        console.log(LinearTransformationData.Matrix);
     },
     
     row1col2: (val) => {
@@ -65,8 +66,6 @@ const matrixValHandlers = {
         let valu = parseInt(val);
         if(valu === NaN) val = 0;
         LinearTransformationData.Matrix[0][1] = valu;
-
-        console.log(LinearTransformationData.Matrix);
     },
     
     row2col1: (val) => {
@@ -76,8 +75,6 @@ const matrixValHandlers = {
         let valu = parseInt(val);
         if(valu === NaN) valu = 0;
         LinearTransformationData.Matrix[1][0] = valu;
-
-        console.log(LinearTransformationData.Matrix);
     },
     
     row2col2: (val) => {
@@ -85,10 +82,8 @@ const matrixValHandlers = {
         console.log(`Matrix value from row 2 col 2 : ${val}`);
 
         let valu = parseInt(val);
-        if(valu === NaN) valu = 0;
+        if(Number.isNaN(valu)) valu = 1;
         LinearTransformationData.Matrix[1][1] = valu;
-
-        console.log(LinearTransformationData.Matrix);
     }
 }
 
@@ -125,5 +120,6 @@ document.getElementById("StopBtn").addEventListener("click", (e) => {
 
 export { 
     LinearTransformationData,
-    AnimationData
+    AnimationData,
+    ConfigurationsData
 };
