@@ -8,6 +8,7 @@ import {
     ColorPalette,
     AnimationData,
 } from "../export.js";
+import { ControlBtnAnimationController } from "./UI/ControlBtnAnimationController.js";
 
 // Animation of Linear Transformation;
 function LTAnimation(linearTransformation, duration) {
@@ -57,7 +58,8 @@ LTAnimation.prototype.getUpdatedBasis = function(dt) {
 
     if(this._t > this._T) {
         this._p = 1.0;
-
+        
+        ControlBtnAnimationController.stopBtnHandler();
         // AnimationData.IsPlaying = false;
         document.getElementById("Range").value = 100;
     }

@@ -77,5 +77,24 @@ span.text-with-matrix {
 
 }
 
+.controlBtn {
+    transition: all 0.3s ease;
+    transform: rotate(0deg);
+    position: relative;
+    top: 10px;
+}
+
+.rotate180 {
+    transform: rotate(180deg);
+}
+
+.opacity0 {
+    opacity: 0;
+}
+
+.displayNone {
+    display: none;
+}
+
 
 /* MAtRiX */

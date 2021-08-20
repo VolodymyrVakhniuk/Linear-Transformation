@@ -1,3 +1,4 @@
+import { ControlBtnAnimationController } from "./ControlBtnAnimationController.js";
 
 // Global object to store all necessary data about LT;
 const LinearTransformationData = {
@@ -105,15 +106,18 @@ document.getElementById("Range").addEventListener("input", (e) => {
     // playAnimation(e.target.value / 100);
     AnimationData.Val = e.target.value / 100;
     AnimationData.IsPlaying = false;
+    ControlBtnAnimationController.stopBtnHandler();
 });
 
-document.getElementById("PlayBtn").addEventListener("click", (e) => {
+document.getElementById("playBtn").addEventListener("click", (e) => {
     // trigger start func
+    ControlBtnAnimationController.playBtnHandler();
 
     AnimationData.IsPlaying = true;
 })
-document.getElementById("StopBtn").addEventListener("click", (e) => {
+document.getElementById("stopBtn").addEventListener("click", (e) => {
     // trigger stop func
+    ControlBtnAnimationController.stopBtnHandler();
 
     AnimationData.IsPlaying = false;
 })      
@@ -123,3 +127,8 @@ export {
     AnimationData,
     ConfigurationsData
 };
+
+
+
+
+
