@@ -7,30 +7,23 @@
 import {
     LinearTransformation,
     LinearTransformationData,
+    AnimationData,
     GridRender,
     MainCanvas,
     OriginRenderer,
     Vector2DRenderer,
     LTAnimation,
-    colorPalette
+    ColorPalette,
+    Timer
 } from "../export.js";
 
 console.log(LinearTransformationData);
 
-
 var vector = [3, 4];
 
-var basis1 = LinearTransformationData.BasisVec1;
-var basis2 = LinearTransformationData.BasisVec2;
-
-var linearTransformation = new LinearTransformation(basis1, basis2, LinearTransformationData.Matrix);
+var linearTransformation = new LinearTransformation(LinearTransformationData);
 var ltAnimation = new LTAnimation(linearTransformation, 4000);
 
-// var basis1 = [100, 40];
-// var basis2 = [40, 100];
-
-// var basis1 = [0, 100];
-// var basis2 = [100, 0];
 
 MainCanvas.setup = function() {
     let mc = MainCanvas;
@@ -41,39 +34,54 @@ MainCanvas.setup = function() {
     mc.vectorRenderer = new Vector2DRenderer;
     mc.gridRenderer = new GridRender;
 
-    mc.vectorRenderer.attachBasisVector(basis1, 1);
-    mc.vectorRenderer.attachBasisVector(basis2, 2);
+    mc.vectorRenderer.attachBasis(LinearTransformationData.BasisVec1, LinearTransformationData.BasisVec2);
+    mc.gridRenderer.attachBasis(LinearTransformationData.BasisVec1, LinearTransformationData.BasisVec2);
     // mc.vectorRenderer.attachVector(vector);
 
-    mc.gridRenderer.attachBasis(basis1, basis2);
+    mc.timer = new Timer();
 }
-
-// Request Animation Frame;
 
 MainCanvas.draw = function() {
     let mc = MainCanvas; // alias
 
+    // console.log(LinearTransformationData.Matrix[0][0]);
+    // console.log(LinearTransformationData.Matrix[0][1]);
+    // console.log(LinearTransformationData.Matrix[1][0]);
+    // console.log(LinearTransformationData.Matrix[0][0]);
+    
     // let transformedBasis = linearTransformation.getInterpolatedResult(0.9);
     // let transformedBasis = linearTransformation.getTransformedBasis();
     // ltAnimation.play(mc);
-    
+
+    // Measuring time elapsed since previous iteration;
+    let dt = mc.timer.getElapsedTime();
+    mc.timer.restart();
+
+    if(AnimationData.IsPlaying === true) {
+        // ltAnimation.play(mc);
+        console.log("Animating");
+        let [updatedBasisVec1, updatedBasisVec2] = ltAnimation.getUpdatedBasis(dt);
+        console.log(updatedBasisVec1);
+        console.log(updatedBasisVec2);
+        console.log("dasda");
+        mc.vectorRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
+        mc.gridRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
+        // mc.vectorRenderer.attachBasis(updatedBasisVec1, updatedBasisVec2);
+        // mc.gridRenderer.attachBasis(updatedBasisVec1, updatedBasisVec2);
+    }
+
     // Everything is rendered from the origin coords
     mc.translate(mc.origin.x, mc.origin.y);
 
     mc.background(
-        colorPalette.backgroundColor.r,
-        colorPalette.backgroundColor.g,
-        colorPalette.backgroundColor.b
+        ColorPalette.backgroundColor.r,
+        ColorPalette.backgroundColor.g,
+        ColorPalette.backgroundColor.b
     );
 
     mc.gridRenderer.renderGrid(mc);
     mc.vectorRenderer.renderVectors(mc);
     mc.originRenderer.renderOrigin(mc);
-
-    // basis1[0] += 1;
-    // basis1[1] += 1;
-    // basis2[0] += 1;
-    // basis2[1] += 1;
 }
 
 

@@ -1,4 +1,4 @@
-import { colorPalette } from "./Color.js";
+import { ColorPalette } from "../Color.js";
 
 const originRenderData = {
     x : 0,
@@ -24,7 +24,7 @@ OriginRenderer.prototype.renderOrigin = function(p) {
 
     p.push();
     // p.noStroke();
-    p.fill(colorPalette.originColor.r, colorPalette.originColor.g, colorPalette.originColor.b);
+    p.fill(ColorPalette.originColor.r, ColorPalette.originColor.g, ColorPalette.originColor.b);
     p.ellipse(originRenderData.x, originRenderData.y, originRenderData.rad, originRenderData.rad);
     p.pop();
 }

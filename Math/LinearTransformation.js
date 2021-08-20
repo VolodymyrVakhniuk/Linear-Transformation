@@ -1,7 +1,9 @@
-function LinearTransformation(basisVector1, basisVector2, transformMatrix) {
-    this._basisVec1 = basisVector1;
-    this._basisVec2 = basisVector2;
-    this._transformMatrix = transformMatrix;
+
+function LinearTransformation(linearTransformationData) {
+
+    this._basisVec1 = linearTransformationData.BasisVec1;
+    this._basisVec2 = linearTransformationData.BasisVec2;
+    this._transformMatrix = linearTransformationData.Matrix;
 
     this._vectors = [];
 }
@@ -21,9 +23,10 @@ LinearTransformation.prototype.getTransformedBasis = function() {
 // p - interpolation proportion: 0 <= p <= 1; 
 LinearTransformation.prototype.getInterpolatedResult = function(p) {
 
+    let [transformedBasisVec1, transformedBasisVec2] = this.getTransformedBasis();
     // Compute trajectories;
-    let trajectory1 = math.subtract(this.getTransformedBasis()[0], this._basisVec1);
-    let trajectory2 = math.subtract(this.getTransformedBasis()[1], this._basisVec2);
+    let trajectory1 = math.subtract(transformedBasisVec1, this._basisVec1);
+    let trajectory2 = math.subtract(transformedBasisVec2, this._basisVec2);
 
     // Calculate interpolated basis based on proportion given - p;
     let interpBasisVec1 = math.add( math.multiply(trajectory1, p), this._basisVec1 );

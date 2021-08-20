@@ -6,7 +6,7 @@ function Color(r, g, b, a) {
     this.a = a;
 }
 
-const colorPalette = {
+const ColorPalette = {
     backgroundColor :   new Color(253, 245, 228),
 
     mainAxisColor   :   new Color(58, 76, 90),
@@ -20,6 +20,5 @@ const colorPalette = {
 };
 
 export {
-    Color, 
-    colorPalette
+    ColorPalette
 };
