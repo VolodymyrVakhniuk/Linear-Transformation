@@ -17,7 +17,10 @@ const AnimationData = {
 };
 
 const ConfigurationsData = {
-    displayEigenVectors : true
+    displayEigenVectors : false,
+
+    displayInOutVector : false,
+    InOutVector : new Array(2).fill(0)
 };
 
 
@@ -88,6 +91,22 @@ const matrixValHandlers = {
     }
 }
 
+const trVectorValHandlers = {
+    vec1val1: (val) => {
+        // assign to obj
+        console.log(`Value from first tr vector first val is : ${val}`);
+        ConfigurationsData.InOutVector[0] = parseInt(val);
+        // LinearTransformationData.BasisVec1[0] = parseInt(val);
+    },
+
+    vec1val2: (val) => {
+        // assign to obj
+        console.log(`Value from first tr vector second val is : ${val}`);
+        ConfigurationsData.InOutVector[1] = parseInt(val);
+        // LinearTransformationData.BasisVec1[1] = parseInt(val);
+    },
+};
+
 
 // Listeners
 document.getElementsByClassName("matrix-input").forEach(domElement => {
@@ -99,6 +118,12 @@ document.getElementsByClassName("matrix-input").forEach(domElement => {
 document.getElementsByClassName("vector-input").forEach(domElement => {
     domElement.addEventListener("input", (e) => {
         vectorValHandlers[e.target.getAttribute("data-identifier")](e.target.value);
+    });
+});
+
+document.getElementsByClassName("trVector-input").forEach(domElement => {
+    domElement.addEventListener("input", (e) => {
+        trVectorValHandlers[e.target.getAttribute("data-identifier")](e.target.value);
     });
 });
 
@@ -115,12 +140,31 @@ document.getElementById("playBtn").addEventListener("click", (e) => {
 
     AnimationData.IsPlaying = true;
 })
+
 document.getElementById("stopBtn").addEventListener("click", (e) => {
     // trigger stop func
     ControlBtnAnimationController.stopBtnHandler();
 
     AnimationData.IsPlaying = false;
-})      
+});
+
+document.getElementById("CheckBox1").addEventListener('change', function() {
+    if (this.checked) {
+        ConfigurationsData.displayEigenVectors = true;
+    } else {
+        ConfigurationsData.displayEigenVectors = false;
+    }
+});
+
+document.getElementById("CheckBox3").addEventListener('change', function() {
+    if (this.checked) {
+        ConfigurationsData.displayInOutVector = true;
+    } else {
+        ConfigurationsData.displayInOutVector = false;
+    }
+});
+
+// document.getElementById
 
 export { 
     LinearTransformationData,

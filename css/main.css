@@ -19,9 +19,6 @@ h1 {
     font-weight: 600;
 }
 
-
-
-
 /* Matrix */
 .matrix-cell {
     width: 25px;
@@ -39,7 +36,6 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-
 
 .matrix {
     position: relative;
@@ -74,7 +70,6 @@ input[type=number] {
 span.text-with-matrix {
     line-height: 42px;
     padding: 5px;
-
 }
 
 .controlBtn {
@@ -95,6 +90,3 @@ span.text-with-matrix {
 .displayNone {
     display: none;
 }
-
-
-/* MAtRiX */

@@ -10,37 +10,18 @@ const vectorRenderData = {
 };
 
 function Vector2DRenderer() {
-    // Empty list of vectors
-    this.__vectors = []; // vectors specified in terms of basis;
+    this.__vectors = [];    // vectors specified in terms of basis;
     this.__basisVectors = { // basis is specified in terms of Carthesian Coords (pixels);
         vb1 : null,
         vb2 : null
     };
 }
 
-Vector2DRenderer.prototype.__checkVectorType = function(v) {
-    return Array.isArray(v) && v.length == 2 && typeof v[0] == 'number' && typeof v[1] == 'number';
-}
-
-Vector2DRenderer.prototype.__checkp5CanvasType = function(p5Canvas) {
-    return p5Canvas instanceof p5;
-}
-
 Vector2DRenderer.prototype.attachVector = function(vector) {
-    if(this.__checkVectorType(vector) == false) {
-        console.error("Type mismatch; provide a list of 2 numbers in Vector2DRenderer.attachVector");
-        return;
-    }
-
     this.__vectors.push(vector);
-    console.log("here");
 }
  
 Vector2DRenderer.prototype.attachBasis = function(basisVector1, basisVector2) {
-    if(this.__checkVectorType(basisVector1) == false || this.__checkVectorType(basisVector1) == false) {
-        console.error("Type mismatch; provide a list of 2 numbers in Vector2DRenderer.attachBasis");
-        return;
-    }
 
     // Check if already attached;
     if(!(this.__basisVectors.vb1 === null && this.__basisVectors.vb2 === null)) {
@@ -53,28 +34,14 @@ Vector2DRenderer.prototype.attachBasis = function(basisVector1, basisVector2) {
 }
 
 Vector2DRenderer.prototype.updateBasis = function(newBasisVector1, newBasisVector2) {
-    if(this.__checkVectorType(newBasisVector1) == false || this.__checkVectorType(newBasisVector2) == false) {
-        console.error("Type mismatch; provide a list of 2 numbers in Vector2DRenderer.updateBasis");
-        return;
-    }
 
     // Copying new basis vectors to vb1 and vb2 without distorting the reference;
     this.__basisVectors.vb1 = newBasisVector1.map(function(x) { return x; });
     this.__basisVectors.vb2 = newBasisVector2.map(function(x) { return x; });
 }
 
-
-Vector2DRenderer.prototype.dettachVector = function() {
-    
-}
-
 // c must be a p5 canvas;
-Vector2DRenderer.prototype.renderVectors = function(c) {
-
-    if(this.__checkp5CanvasType(c) == false) {
-        console.error("Type mismatch; provide a valid p5 context in Vector2DRenderer.renderVectors");
-        return;
-    }
+Vector2DRenderer.prototype.renderBasisVectors = function(c) {
 
     // Render basis vectors;
     let basisVec1Render = this.__basisVectors.vb1.map(function(x) { return x * Constants.UNIT_LENGTH; });
@@ -82,6 +49,12 @@ Vector2DRenderer.prototype.renderVectors = function(c) {
 
     this._renderBasisVector(c, basisVec1Render, ColorPalette.basisV1Color);
     this._renderBasisVector(c, basisVec2Render, ColorPalette.basisV2Color);
+}
+
+Vector2DRenderer.prototype.renderVectors = function(c) {
+
+    let basisVec1Render = this.__basisVectors.vb1.map(function(x) { return x * Constants.UNIT_LENGTH; });
+    let basisVec2Render = this.__basisVectors.vb2.map(function(x) { return x * Constants.UNIT_LENGTH; });
 
     // Render regular vectors;
     for(let index = 0; index < this.__vectors.length; index++) {
@@ -93,6 +66,7 @@ Vector2DRenderer.prototype.renderVectors = function(c) {
         this._renderVector(c, ccvector);
     }
 }
+
 
 Vector2DRenderer.prototype._renderBasisVector = function(c, vector, color) {
     const xtail = vector[0];
@@ -158,8 +132,3 @@ Vector2DRenderer.prototype._renderVector = function(c, vector) {
 export {
     Vector2DRenderer
 }
-
-
-
-
-

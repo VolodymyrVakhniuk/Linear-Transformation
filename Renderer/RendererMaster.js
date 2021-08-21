@@ -1,9 +1,3 @@
-// Make a setup and draw functions of MainCanvas;
-// Includes VectorRenderer, GridRenderer, etc
-
-// var basis1 = [130, 50];
-// var basis2 = [-50, 100];
-
 import {
     LinearTransformation,
     Spectrum,
@@ -20,13 +14,6 @@ import {
     Timer
 } from "../export.js";
 
-console.log(LinearTransformationData);
-
-var vector = [3, 4];
-
-var linearTransformation = new LinearTransformation(LinearTransformationData);
-var ltAnimation = new LTAnimation(linearTransformation, 4000);
-
 MainCanvas.setup = function() {
     let mc = MainCanvas;
 
@@ -38,22 +25,24 @@ MainCanvas.setup = function() {
     mc.spectrumRenderer = new SpectrumRenderer;
 
     mc.vectorRenderer.attachBasis(LinearTransformationData.BasisVec1, LinearTransformationData.BasisVec2);
+    mc.vectorRenderer.attachVector(ConfigurationsData.InOutVector);
     mc.gridRenderer.attachBasis(LinearTransformationData.BasisVec1, LinearTransformationData.BasisVec2);
-
     mc.spectrumRenderer.attachBasis(LinearTransformationData.BasisVec1, LinearTransformationData.BasisVec2);
 
-    let spectrum = new Spectrum(LinearTransformationData);
-    mc.spectrumRenderer.attachEigenVectors(spectrum.getUnitEigenVectors());
-    // console.log("Matrix is: " + LinearTransformationData.Matrix);
-    // console.log("Eigenvectors are: " + spectrum.getUnitEigenVectors());
+    mc.spectrum = new Spectrum(LinearTransformationData.Matrix);
+    let eigenvectors = mc.spectrum.getUnitEigenVectors();
 
-    // mc.vectorRenderer.attachVector(vector);
-
-    if(ConfigurationsData.displayEigenVectors === true) {
-        mc.prevMatrix = LinearTransformationData.Matrix.map(function(arr) {
-            return arr.slice();
-        });
+    if(eigenvectors != null) {
+        mc.spectrumRenderer.attachEigenVectors(eigenvectors);
     }
+
+    let linearTransformation = new LinearTransformation(LinearTransformationData);
+    mc.ltAnimation = new LTAnimation(linearTransformation, 4000);
+
+    // Copying matrix;
+    mc.prevMatrix = LinearTransformationData.Matrix.map(function(arr) {
+        return arr.slice();
+    });
 
     mc.timer = new Timer();
 }
@@ -65,50 +54,30 @@ MainCanvas.draw = function() {
     let dt = mc.timer.getElapsedTime();
     mc.timer.restart();
     
-    if(ConfigurationsData.displayEigenVectors === true) {
-        if(!(mc.prevMatrix[0][0] === LinearTransformationData.Matrix[0][0] &&
-             mc.prevMatrix[0][1] === LinearTransformationData.Matrix[0][1] && 
-             mc.prevMatrix[1][0] === LinearTransformationData.Matrix[1][0] &&
-             mc.prevMatrix[1][1] === LinearTransformationData.Matrix[1][1])) {
+    // Computing eigenvectors if matrix changes;
+    if(!(mc.prevMatrix[0][0] === LinearTransformationData.Matrix[0][0] &&
+            mc.prevMatrix[0][1] === LinearTransformationData.Matrix[0][1] && 
+            mc.prevMatrix[1][0] === LinearTransformationData.Matrix[1][0] &&
+            mc.prevMatrix[1][1] === LinearTransformationData.Matrix[1][1])) {
 
-                mc.spectrumRenderer.removeEigenVectors();
-                let spectrum = new Spectrum(LinearTransformationData);
-                
-                let eigenvectors = spectrum.getUnitEigenVectors();
+            let eigenvectors = mc.spectrum.getUnitEigenVectors();
 
-                if(eigenvectors != null) {
-                    mc.spectrumRenderer.attachEigenVectors(spectrum.getUnitEigenVectors());
-                }
-                
-                mc.prevMatrix = LinearTransformationData.Matrix.map(function(arr) {
-                    return arr.slice();
-                });
-        }
+            if(eigenvectors != null) {
+                mc.spectrumRenderer.replaceEigenVectors(eigenvectors);
+            }
+            
+            mc.prevMatrix = LinearTransformationData.Matrix.map(function(arr) {
+                return arr.slice();
+            });
     }
 
-    if(AnimationData.IsPlaying === true) {
-        let [updatedBasisVec1, updatedBasisVec2] = ltAnimation.getUpdatedBasis(dt);
+    let [updatedBasisVec1, updatedBasisVec2] = (AnimationData.IsPlaying === true) ? 
+        mc.ltAnimation.getUpdatedBasis(dt) :
+        mc.ltAnimation.getUpdatedBasis(0);
 
-        mc.vectorRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
-        mc.gridRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
-
-        // If eigenvalues need to be rendered;
-        if(ConfigurationsData.displayEigenVectors === true) {
-            mc.spectrumRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
-        }
-    }
-    else
-    {
-        let [updatedBasisVec1, updatedBasisVec2] = ltAnimation.getUpdatedBasis(0);
-
-        mc.vectorRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
-        mc.gridRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
-
-        // If eigenvalues need to be rendered;
-        if(ConfigurationsData.displayEigenVectors === true) {
-            mc.spectrumRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
-        }
-    }
+    mc.vectorRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
+    mc.gridRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
+    mc.spectrumRenderer.updateBasis(updatedBasisVec1, updatedBasisVec2);
 
     // Everything is rendered from the origin coords
     mc.translate(mc.origin.x, mc.origin.y);
@@ -120,10 +89,18 @@ MainCanvas.draw = function() {
     );
     
     mc.gridRenderer.renderGrid(mc);
-    mc.vectorRenderer.renderVectors(mc);
+
+    // If eigenvalues need to be rendered;
+    if(ConfigurationsData.displayEigenVectors === true) {
+        mc.spectrumRenderer.renderEigenVectors(mc);
+    }
+   
+    mc.vectorRenderer.renderBasisVectors(mc); 
+
+    // If in/out vector needs to be rendered;
+    if(ConfigurationsData.displayInOutVector === true) {
+        mc.vectorRenderer.renderVectors(mc); 
+    }
+
     mc.originRenderer.renderOrigin(mc);
-    mc.spectrumRenderer.renderEigenVectors(mc);
 }
-
-
-

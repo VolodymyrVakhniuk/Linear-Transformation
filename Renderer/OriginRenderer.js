@@ -10,18 +10,9 @@ function OriginRenderer() {
 
 }
 
-OriginRenderer.prototype.__checkp5CanvasType = function(p5Canvas) {
-    return p5Canvas instanceof p5;
-}
-
 // p must be a p5 canvas;
 OriginRenderer.prototype.renderOrigin = function(p) {
-
-    if(this.__checkp5CanvasType(p) == false) {
-        console.error("Type mismatch; provide a valid p5 context in OriginRenderer.renderOrigin");
-        return;
-    }
-
+    
     p.push();
     // p.noStroke();
     p.fill(ColorPalette.originColor.r, ColorPalette.originColor.g, ColorPalette.originColor.b);

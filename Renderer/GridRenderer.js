@@ -16,18 +16,10 @@ function GridRender() {
     };
 }
 
-GridRender.prototype.__checkVectorType = function(v) {
-    return Array.isArray(v) && v.length == 2 && typeof v[0] == 'number' && typeof v[1] == 'number';
-}
-
-GridRender.prototype.__checkp5CanvasType = function(p5Canvas) {
-    return p5Canvas instanceof p5;
-}
-
 // Attaches or changes basis vectors;
 GridRender.prototype.attachBasis = function(basisVector1, basisVector2) {
      // Check if already attached;
-     if(!(this.__basisVectors.vb1 === null && this.__basisVectors.vb2 === null)) {
+    if(!(this.__basisVectors.vb1 === null && this.__basisVectors.vb2 === null)) {
         return;
     }
 
@@ -36,10 +28,6 @@ GridRender.prototype.attachBasis = function(basisVector1, basisVector2) {
 }
 
 GridRender.prototype.updateBasis = function(newBasisVector1, newBasisVector2) {
-    if(this.__checkVectorType(newBasisVector1) == false || this.__checkVectorType(newBasisVector2) == false) {
-        console.error("Type mismatch; provide a list of 2 numbers in GridRender.updateBasis");
-        return;
-    }
 
     // Copying new basis vectors to vb1 and vb2 without distorting the reference;
     this.__basisVectors.vb1 = newBasisVector1.map(function(x) { return x; });
@@ -48,11 +36,6 @@ GridRender.prototype.updateBasis = function(newBasisVector1, newBasisVector2) {
 
 // mc must be a p5 canvas; BEWARE weird math;
 GridRender.prototype.renderGrid = function(c) {
-
-    if(this.__checkp5CanvasType(c) == false) {
-        console.error("Type mismatch; provide a valid p5 context in GridRender.renderGrid");
-        return;
-    }
 
     let basisVec1Render = this.__basisVectors.vb1.map(function(x) { return x * Constants.UNIT_LENGTH; });
     let basisVec2Render = this.__basisVectors.vb2.map(function(x) { return x * Constants.UNIT_LENGTH; });
