@@ -1,7 +1,7 @@
 import {
     AnimationData,
     ControlBtnAnimationController
-} from "../export.js";
+} from "./export.js";
 
 // Animation of Linear Transformation;
 function LTAnimation(linearTransformation, duration) {
