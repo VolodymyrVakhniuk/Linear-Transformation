@@ -156,7 +156,7 @@ document.getElementsByClassName("trVector-input").forEach(domElement => {
 });
 
 document.getElementById("Range").addEventListener("input", (e) => {
-    // playAnimation(e.target.value / 100);
+
     AnimationData.Val = e.target.value / 100;
     AnimationData.IsPlaying = false;
     ControlBtnAnimationController.stopBtnHandler();
@@ -165,6 +165,11 @@ document.getElementById("Range").addEventListener("input", (e) => {
 document.getElementById("playBtn").addEventListener("click", (e) => {
     // trigger start func
     ControlBtnAnimationController.playBtnHandler();
+
+    if(document.getElementById("Range").value == 100) {
+        AnimationData.Val = -1;
+        document.getElementById("Range").value = 0;
+    }
 
     AnimationData.IsPlaying = true;
 })

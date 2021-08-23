@@ -17,6 +17,12 @@ function LTAnimation(linearTransformation, duration) {
 
 LTAnimation.prototype.getUpdatedBasis = function(dt) {
     
+    if(AnimationData.Val == -1) {
+        this._t = 0;
+        AnimationData.Val = 0;
+        this.prevSliderVal = AnimationData.Val;
+    }
+
     if(this.prevSliderVal != AnimationData.Val) {  
         this._t = AnimationData.Val * this._T;
         this.prevSliderVal = AnimationData.Val;
