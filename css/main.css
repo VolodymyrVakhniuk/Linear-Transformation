@@ -7,7 +7,7 @@ html body .main-steps {
 }
 
 .main-steps_list {
-    font-size: 1.3em;
+    font-size: 1em;
     padding-right: 30px;
 }
 
@@ -76,7 +76,7 @@ span.text-with-matrix {
     transition: all 0.3s ease;
     transform: rotate(0deg);
     position: relative;
-    top: 10px;
+    top: 5px;
 }
 
 .rotate180 {
