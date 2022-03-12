@@ -39,7 +39,7 @@ const vectorValHandlers = {
         // assign to obj
         console.log(`Value from first vector first val is : ${val}`);
 
-        let valu = parseInt(val);
+        let valu = parseFloat(val);
         if(Number.isNaN(valu)) valu = 1;
         LinearTransformationData.BasisVec1[0] = valu;
     },
@@ -48,7 +48,7 @@ const vectorValHandlers = {
         // assign to obj
         console.log(`Value from first vector second val is : ${val}`);
 
-        let valu = parseInt(val);
+        let valu = parseFloat(val);
         if(Number.isNaN(valu)) valu = 0;
         LinearTransformationData.BasisVec1[1] = valu;
     },
@@ -57,7 +57,7 @@ const vectorValHandlers = {
         // assign to obj
         console.log(`Value from second vector first val is : ${val}`);
 
-        let valu = parseInt(val);
+        let valu = parseFloat(val);
         if(Number.isNaN(valu)) valu = 0;
         LinearTransformationData.BasisVec2[0] = valu;
     },
@@ -66,7 +66,7 @@ const vectorValHandlers = {
         // assign to obj
         console.log(`Value from second vector second val is : ${val}`);
 
-        let valu = parseInt(val);
+        let valu = parseFloat(val);
         if(Number.isNaN(valu)) valu = 1;
         LinearTransformationData.BasisVec2[1] = valu;
     }
@@ -79,7 +79,7 @@ const matrixValHandlers = {
         // assign to obj
         console.log(`Matrix value from row 1 col 1  : ${val}`);
 
-        let valu = parseInt(val);
+        let valu = parseFloat(val);
         if(Number.isNaN(valu)) valu = 1;
         LinearTransformationData.Matrix[0][0] = valu;
     },
@@ -87,7 +87,7 @@ const matrixValHandlers = {
     row1col2: (val) => {
         // assign to obj
 
-        let valu = parseInt(val);
+        let valu = parseFloat(val);
         if(Number.isNaN(valu)) valu = 0;
         LinearTransformationData.Matrix[0][1] = valu;
 
@@ -98,7 +98,7 @@ const matrixValHandlers = {
         // assign to obj
         console.log(`Matrix value from row 2 col 1 : ${val}`);
 
-        let valu = parseInt(val);
+        let valu = parseFloat(val);
         if(Number.isNaN(valu)) valu = 0;
         LinearTransformationData.Matrix[1][0] = valu;
     },
@@ -107,7 +107,7 @@ const matrixValHandlers = {
         // assign to obj
         console.log(`Matrix value from row 2 col 2 : ${val}`);
 
-        let valu = parseInt(val);
+        let valu = parseFloat(val);
         if(Number.isNaN(valu)) valu = 1;
         LinearTransformationData.Matrix[1][1] = valu;
     }
@@ -118,7 +118,7 @@ const trVectorValHandlers = {
         // assign to obj
         console.log(`Value from first tr vector first val is : ${val}`);
 
-        let valu = parseInt(val);
+        let valu = parseFloat(val);
         if(Number.isNaN(valu)) valu = 0;
         ConfigurationsData.InOutVector[0] = valu;
         // LinearTransformationData.BasisVec1[0] = parseInt(val);
@@ -128,7 +128,7 @@ const trVectorValHandlers = {
         // assign to obj
         console.log(`Value from first tr vector second val is : ${val}`);
 
-        let valu = parseInt(val);
+        let valu = parseFloat(val);
         if(Number.isNaN(valu)) valu = 0;
         ConfigurationsData.InOutVector[1] = valu;
         // LinearTransformationData.BasisVec1[1] = parseInt(val);
